@@ -66,7 +66,7 @@ class SelectOption(FieldOption):
             ValidationError: If value is invalid
         """
         if isinstance(value, str):
-            if value not in self.choices:
+            if value not in [choice['name'] for choice in self.choices]:
                 raise ValidationError(f"Value '{value}' not in choices: {self.choices}")
         elif isinstance(value, list):
             invalid_values = [v for v in value if v not in self.choices]
